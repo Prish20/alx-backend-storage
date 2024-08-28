@@ -5,8 +5,7 @@ This module contains the Cache class for storing and retrieving data in Redis.
 
 import redis
 import uuid
-from typing import Union, Callable, Optional
-from functools import wraps
+from typing import Callable, Optional, Union
 
 
 class Cache:
@@ -36,78 +35,45 @@ class Cache:
             fn: Optional[Callable] = None) -> Union[str,
                                                     bytes, int, float, None]:
         """
-        Retrieve data from Redis
-        and optionally convert it using the provided function.
+        Retrieve data from Redis,
+        optionally converting it using the provided function.
 
         Args:
-            key (str): The key to retrieve from Redis.
-            fn (Optional[Callable])
-            : A function to convert the data to the desired type.
+            key (str): The key to retrieve data for.
+            fn (Optional[Callable]): A function to apply to the retrieved data.
 
         Returns:
             Union[str, bytes, int,
-            float, None]: The retrieved data or None if the key does not exist.
+            float, None]: The retrieved data, possibly transformed by fn.
         """
         data = self._redis.get(key)
-        if data is not None and fn is not None:
+        if data is None:
+            return None
+        if fn is not None:
             return fn(data)
         return data
 
     def get_str(self, key: str) -> Optional[str]:
         """
-        Retrieve data from Redis and convert it to a UTF-8 string.
+        Retrieve data as a UTF-8 decoded string.
 
         Args:
-            key (str): The key to retrieve from Redis.
+            key (str): The key to retrieve data for.
 
         Returns:
-            Optional[str]: The retrieve
-            d string or None if the key does not exist.
+            Optional[str]: The retrieved
+            data decoded as a string, or None if the key does not exist.
         """
-        return self.get(key, lambda d: d.decode('utf-8'))
+        return self.get(key, fn=lambda d: d.decode('utf-8'))
 
     def get_int(self, key: str) -> Optional[int]:
         """
-        Retrieve data from Redis and convert it to an integer.
+        Retrieve data as an integer.
 
         Args:
-            key (str): The key to retrieve from Redis.
+            key (str): The key to retrieve data for.
 
         Returns:
-            Optional[int]: The retrieved
-            integer or None if the key does not exist.
+            Optional[int]: The retrieved data converted to an integer, or None if the key does not exist.
         """
-        return self.get(key, int)
-
-
-def call_history(method: Callable) -> Callable:
-    """
-    Decorator to store the history of inputs and outputs of a method.
-
-    Args:
-        method (Callable): The method to be decorated.
-
-    Returns:
-        Callable: The decorated method.
-    """
-    @wraps(method)
-    def wrapper(self, *args, **kwargs):
-        input_key = "{}:inputs".format(method.__qualname__)
-        output_key = "{}:outputs".format(method.__qualname__)
-
-        # Store input arguments as strings in Redis
-        self._redis.rpush(input_key, str(args))
-
-        # Call the actual method
-        result = method(self, *args, **kwargs)
-
-        # Store the result in Redis
-        self._redis.rpush(output_key, result)
-
-        return result
-
-    return wrapper
-
-
-# Apply the decorator to the store method
-Cache.store = call_history(Cache.store)
+        return self.get(key, fn=int)
