@@ -41,11 +41,10 @@ def replay(method: Callable) -> None:
 
     print(f"{method.__qualname__} was called {len(inputs)} times:")
     for input_data, output_data in zip(inputs, outputs):
-        # Corrected: Convert back to original data type
-        input_data_eval = eval(input_data.decode('utf-8'))
-        output_data_str = output_data.decode('utf-8')
-        print(f"{method.__qualname__}(*{
-            input_data_eval}) -> {output_data_str}")
+        # Convert back to original tuple form
+        input_tuple = eval(input_data.decode('utf-8'))
+        output_str = output_data.decode('utf-8')
+        print(f"{method.__qualname__}(*{input_tuple}) -> {output_str}")
 
 
 class Cache:
