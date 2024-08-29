@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 This module contains the Cache class for storing and retrieving data in Redis,
-along with a decorator for counting method calls.
+along with decorators for counting method calls and storing call history.
 """
 
 import redis
@@ -18,12 +18,42 @@ def count_calls(method: Callable) -> Callable:
     @functools.wraps(method)
     def wrapper(self, *args, **kwargs):
         """
-        Wrapper function that increment
-        s the call count each time the method is called.
+        Wrapper function that increments
+        the call count each time the method is called.
         """
         key = method.__qualname__
         self._redis.incr(key)
         return method(self, *args, **kwargs)
+
+    return wrapper
+
+
+def call_history(method: Callable) -> Callable:
+    """
+    A decorator that stores the
+    history of inputs and outputs for a method in Redis.
+    The inputs are stored in a list with the key "<method.__qualname__>:inputs"
+    The outputs are stored in
+    a list with the key "<method.__qualname__>:outputs"
+    """
+    @functools.wraps(method)
+    def wrapper(self, *args, **kwargs):
+        """
+        Wrapper function that stores inputs and outputs in Redis.
+        """
+        input_key = f"{method.__qualname__}:inputs"
+        output_key = f"{method.__qualname__}:outputs"
+
+        # Store the input arguments in the inputs list
+        self._redis.rpush(input_key, str(args))
+
+        # Execute the original function and store the output
+        result = method(self, *args, **kwargs)
+
+        # Store the output in the outputs list
+        self._redis.rpush(output_key, str(result))
+
+        return result
 
     return wrapper
 
@@ -37,6 +67,7 @@ class Cache:
         self._redis = redis.Redis()
         self._redis.flushdb()
 
+    @call_history
     @count_calls
     def store(self, data: Union[str, bytes, int, float]) -> str:
         """
@@ -64,8 +95,8 @@ class Cache:
             fn (Optional[Callable]): A function to apply to the retrieved data.
 
         Returns:
-            Union[str, bytes, int, float
-            , None]: The retrieved data, possibly transformed by fn.
+            Union[str, bytes, int,
+            float, None]: The retrieved data, possibly transformed by fn.
         """
         data = self._redis.get(key)
         if data is None:
@@ -95,7 +126,7 @@ class Cache:
             key (str): The key to retrieve data for.
 
         Returns:
-            Optional[int]: The retrieved
-            data converted to an integer, or None if the key does not exist.
+            Optional[int]: The retrieved dat
+            a converted to an integer, or None if the key does not exist.
         """
         return self.get(key, fn=int)
