@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Main file to test the Cache class.
+Main file to test the Cache class and the count_calls decorator.
 """
 
 from exercise import Cache
@@ -8,18 +8,13 @@ from exercise import Cache
 def main():
     cache = Cache()
 
-    # Store and retrieve data using various types and conversion functions
-    TEST_CASES = {
-        b"foo": None,
-        123: int,
-        "bar": lambda d: d.decode("utf-8")
-    }
+    # Store some data and check the call count
+    cache.store(b"first")
+    print(cache.get(cache.store.__qualname__))  # Should print b'1'
 
-    for value, fn in TEST_CASES.items():
-        key = cache.store(value)
-        result = cache.get(key, fn=fn)
-        print(f"Stored value: {value} | Retrieved value: {result}")
-        assert result == value
+    cache.store(b"second")
+    cache.store(b"third")
+    print(cache.get(cache.store.__qualname__))  # Should print b'3'
 
 if __name__ == "__main__":
     main()
