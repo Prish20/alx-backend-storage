@@ -70,7 +70,7 @@ The script can be executed with the following command:
 cat 4-match | mongo my_db
 ```
 
-### Task 5: Count Documents
+## Task 5: Count Documents
 
 This task involves creating a script to count the number of documents in the `school` collection within the `my_db` database.
 
@@ -82,4 +82,18 @@ The script can be executed with the following command:
 
 ```bash
 cat 5-count | mongo my_db
+```
+
+## Task 6: Update Document
+
+This task involves creating a script to update documents in the `school` collection within the `my_db` database by adding an `address` field to documents where the `name` field is `"Holberton school"`.
+
+**File:** `6-update`
+
+**Usage:**
+
+The script can be executed with the following command:
+
+```bash
+cat 6-update | mongo my_db
 ```
