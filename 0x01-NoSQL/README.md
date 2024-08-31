@@ -41,3 +41,17 @@ The script can be executed with the following command:
 ```bash
 cat 2-insert | mongo my_db
 ```
+
+### Task 3: List All Documents
+
+This task involves creating a script to list all documents in the `school` collection within the `my_db` database.
+
+**File:** `3-all`
+
+**Usage:**
+
+The script can be executed with the following command:
+
+```bash
+cat 3-all | mongo my_db
+```
