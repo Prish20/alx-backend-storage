@@ -69,3 +69,17 @@ The script can be executed with the following command:
 ```bash
 cat 4-match | mongo my_db
 ```
+
+### Task 5: Count Documents
+
+This task involves creating a script to count the number of documents in the `school` collection within the `my_db` database.
+
+**File:** `5-count`
+
+**Usage:**
+
+The script can be executed with the following command:
+
+```bash
+cat 5-count | mongo my_db
+```
