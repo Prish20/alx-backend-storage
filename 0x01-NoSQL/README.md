@@ -97,3 +97,17 @@ The script can be executed with the following command:
 ```bash
 cat 6-update | mongo my_db
 ```
+
+### Task 7: Delete by Match
+
+This task involves creating a script to delete documents in the `school` collection within the `my_db` database where the `name` field is `"Holberton school"`.
+
+**File:** `7-delete`
+
+**Usage:**
+
+The script can be executed with the following command:
+
+```bash
+cat 7-delete | mongo my_db
+```
