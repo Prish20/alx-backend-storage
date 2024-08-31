@@ -266,3 +266,17 @@ def top_students(mongo_collection):
 ```python
 ./101-main.py
 ```
+
+### Task 15: Log Stats - New Version
+
+This task involves improving the log stats script by adding a feature to list the top 10 most present IPs in the `nginx` collection of the `logs` database.
+
+**File:** `102-log_stats.py`
+
+**Usage:**
+
+Run the script:
+
+```bash
+./102-log_stats.py
+```
