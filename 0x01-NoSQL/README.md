@@ -27,3 +27,17 @@ The script can be executed with the following command:
 ```bash
 cat 1-use_or_create_database | mongo
 ```
+
+## Task 2: Insert Document
+
+This task involves creating a script to insert a document into the `school` collection in the `my_db` database.
+
+**File:** `2-insert`
+
+**Usage:**
+
+The script can be executed with the following command:
+
+```bash
+cat 2-insert | mongo my_db
+```
