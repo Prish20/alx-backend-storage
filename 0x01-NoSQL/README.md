@@ -111,3 +111,27 @@ The script can be executed with the following command:
 ```bash
 cat 7-delete | mongo my_db
 ```
+
+### Task 8: List All Documents in Python
+
+This task involves writing a Python function that lists all documents in a MongoDB collection. The function should return an empty list if no documents are found.
+
+**File:** `8-all.py`
+**File:** `8-main.py`
+
+**Function Prototype:**
+
+```python
+def list_all(mongo_collection):
+    """
+    Lists all documents in a collection
+    :param mongo_collection: The pymongo collection object
+    :return: A list of documents or an empty list if none are found
+    """
+```
+
+**Usage:**
+
+```python
+./8-main.py
+```
