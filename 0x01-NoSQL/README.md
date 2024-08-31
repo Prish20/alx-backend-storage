@@ -184,3 +184,28 @@ def update_topics(mongo_collection, name, topics):
 ```python
 ./10-main.py
 ```
+
+## Task 11: Where Can I Learn Python?
+
+This task involves writing a Python function that returns a list of schools that have a specific topic.
+
+**File:** `11-schools_by_topic.py, 11-main.py`
+
+**Function Prototype:**
+
+```python
+def schools_by_topic(mongo_collection, topic):
+    """
+    Returns the list of school having a specific topic
+    :param mongo_collection: The pymongo collection object
+    :param topic: The topic searched for in the schools' topics
+    :return: A list of schools having the specific topic
+    """
+```
+
+**Usage:**
+
+```python
+
+./11-main.py
+```
