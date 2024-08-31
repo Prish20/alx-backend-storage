@@ -209,3 +209,23 @@ def schools_by_topic(mongo_collection, topic):
 
 ./11-main.py
 ```
+
+### Task 12: Log Stats
+
+This task involves writing a Python script that provides statistics about Nginx logs stored in MongoDB.
+
+**File:** `12-log_stats.py`
+
+**Usage:**
+
+First, download and restore the data:
+
+```bash
+curl -o dump.zip -s "https://s3.amazonaws.com/intranet-projects-files/holbertonschool-webstack/411/dump.zip"
+unzip dump.zip
+mongorestore dump
+```
+
+```python
+./12-log_stats.py
+```
