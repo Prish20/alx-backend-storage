@@ -42,7 +42,7 @@ The script can be executed with the following command:
 cat 2-insert | mongo my_db
 ```
 
-### Task 3: List All Documents
+## Task 3: List All Documents
 
 This task involves creating a script to list all documents in the `school` collection within the `my_db` database.
 
@@ -54,4 +54,18 @@ The script can be executed with the following command:
 
 ```bash
 cat 3-all | mongo my_db
+```
+
+## Task 4: List All Matches
+
+This task involves creating a script to list all documents in the `school` collection within the `my_db` database where the `name` field is `"Holberton school"`.
+
+**File:** `4-match`
+
+**Usage:**
+
+The script can be executed with the following command:
+
+```bash
+cat 4-match | mongo my_db
 ```
