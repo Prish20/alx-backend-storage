@@ -160,3 +160,27 @@ def insert_school(mongo_collection, **kwargs):
 ```python
 ./9-main.py
 ```
+
+## Task 10: Change School Topics
+
+This task involves writing a Python function that changes the list of topics for a school document based on its name.
+
+**File:** `10-update_topics.py, 10-main.py`
+
+**Function Prototype:**
+
+```python
+def update_topics(mongo_collection, name, topics):
+    """
+    Changes all topics of a school document based on the name
+    :param mongo_collection: The pymongo collection object
+    :param name: The school name to update
+    :param topics: The list of topics approached in the school
+    """
+```
+
+**Usage:**
+
+```python
+./10-main.py
+```
