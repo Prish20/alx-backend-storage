@@ -243,3 +243,26 @@ The script can be executed with the following command:
 ```bash
 cat 100-find | mongo my_db
 ```
+
+## Task 14: Top Students
+
+This task involves writing a Python function that returns all students sorted by their average score.
+
+**File:** `101-students.py, 101-main.py`
+
+**Function Prototype:**
+
+```python
+def top_students(mongo_collection):
+    """
+    Returns all students sorted by average score
+    :param mongo_collection: The pymongo collection object
+    :return: A list of students sorted by average score, each with an 'averageScore' key
+    """
+```
+
+**Usage:**
+
+```python
+./101-main.py
+```
