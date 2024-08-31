@@ -135,3 +135,28 @@ def list_all(mongo_collection):
 ```python
 ./8-main.py
 ```
+
+## Task 9: Insert a Document in Python
+
+This task involves writing a Python function that inserts a new document into a MongoDB collection using keyword arguments and returns the `_id` of the newly inserted document.
+
+**File:** `9-insert_school.py`
+**File:** `9-main.py`
+
+**Function Prototype:**
+
+```python
+def insert_school(mongo_collection, **kwargs):
+    """
+    Inserts a new document in a collection based on kwargs
+    :param mongo_collection: The pymongo collection object
+    :param kwargs: Keyword arguments representing the document fields
+    :return: The _id of the inserted document
+    """
+```
+
+**Usage:**
+
+```python
+./9-main.py
+```
