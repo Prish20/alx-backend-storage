@@ -12,3 +12,18 @@ The script can be executed with the following command:
 
 ```bash
 cat 0-list_databases | mongo
+```
+
+### Task 1: Create or Use a Database
+
+This task involves creating a script to create or switch to a database named `my_db` in MongoDB.
+
+**File:** `1-use_or_create_database`
+
+**Usage:**
+
+The script can be executed with the following command:
+
+```bash
+cat 1-use_or_create_database | mongo
+```
