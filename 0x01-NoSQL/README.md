@@ -229,3 +229,17 @@ mongorestore dump
 ```python
 ./12-log_stats.py
 ```
+
+### Task 13: Regex Filter
+
+This task involves creating a script to list all documents in the `school` collection where the `name` field starts with "Holberton".
+
+**File:** `100-find`
+
+**Usage:**
+
+The script can be executed with the following command:
+
+```bash
+cat 100-find | mongo my_db
+```
